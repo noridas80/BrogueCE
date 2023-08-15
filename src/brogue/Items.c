@@ -5389,11 +5389,11 @@ boolean moveCursor(boolean *targetConfirmed,
                 case NUMPAD_0:
                     *tabKey = true;
                     break;
+                case ACKNOWLEDGE_KEY:
                 case RETURN_KEY:
                     *targetConfirmed = true;
                     break;
                 case ESCAPE_KEY:
-                case ACKNOWLEDGE_KEY:
                     *canceled = true;
                     break;
                 default:

@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     rogue.displayStealthRangeMode = false;
     rogue.trueColorMode = false;
 
-    enum graphicsModes initialGraphics = TEXT_GRAPHICS;
+    enum graphicsModes initialGraphics = HYBRID_GRAPHICS;
 
     int i;
     for (i = 1; i < argc; i++) {
