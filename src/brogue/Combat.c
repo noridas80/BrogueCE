@@ -1235,8 +1235,10 @@ boolean attack(creature *attacker, creature *defender, boolean lungeAttack) {
 
         return true;
     } else { // if the attack missed
-        if (attacker == &player || defender == &player) {
-            playSwing();
+        if (!rogue.playbackMode) {
+            if (attacker == &player || defender == &player) {
+                playWavFile("swing.wav");
+            }
         }
 
         if (!rogue.blockCombatText) {
@@ -1566,17 +1568,21 @@ boolean inflictDamage(creature *attacker, creature *defender,
     }
 
     if (defender->currentHP <= damage) { // killed
-        if (attacker == &player) {
-            playHit2();
-        } else if (defender == &player) {
-            playScream1();
+        if (!rogue.playbackMode) {
+            if (attacker == &player) {
+                playWavFile("hit2.wav");
+            } else if (defender == &player) {
+                playWavFile("scream1.wav");
+            }
         }
         return true;
     } else { // survived
-        if (attacker == &player) {
-            playHit1();
-        } else if (defender == &player) {
-            playThud();
+        if (!rogue.playbackMode) {
+            if (attacker == &player) {
+                playWavFile("hit1.wav");
+            } else if (defender == &player) {
+                playWavFile("thud.wav");
+            }
         }
 
         if (damage < 0 && defender->currentHP - damage > defender->info.maxHP) {
