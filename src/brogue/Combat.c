@@ -23,7 +23,7 @@
 
 #include "Rogue.h"
 #include "IncludeGlobals.h"
-
+#include "Wav.h"
 
 /* Combat rules:
  * Each combatant has an accuracy rating. This is the percentage of their attacks that will ordinarily hit;
@@ -1235,6 +1235,10 @@ boolean attack(creature *attacker, creature *defender, boolean lungeAttack) {
 
         return true;
     } else { // if the attack missed
+        if (attacker == &player || defender == &player) {
+            playSwing();
+        }
+
         if (!rogue.blockCombatText) {
             if (sightUnseen) {
                 if (!rogue.heardCombatThisTurn) {
@@ -1562,8 +1566,19 @@ boolean inflictDamage(creature *attacker, creature *defender,
     }
 
     if (defender->currentHP <= damage) { // killed
+        if (attacker == &player) {
+            playHit2();
+        } else if (defender == &player) {
+            playScream1();
+        }
         return true;
     } else { // survived
+        if (attacker == &player) {
+            playHit1();
+        } else if (defender == &player) {
+            playThud();
+        }
+
         if (damage < 0 && defender->currentHP - damage > defender->info.maxHP) {
             defender->currentHP = max(defender->currentHP, defender->info.maxHP);
         } else {

@@ -3,7 +3,7 @@ include config.mk
 cflags := -Isrc/brogue -Isrc/platform -std=c99 \
 	-Wall -Wpedantic -Werror=implicit -Wno-parentheses -Wno-unused-result \
 	-Wformat -Werror=format-security -Wformat-overflow=0
-libs := -lm
+libs := -lm -framework OpenAL
 cppflags := -DDATADIR=$(DATADIR)
 
 sources := $(wildcard src/brogue/*.c) $(addprefix src/platform/,main.c platformdependent.c null-platform.c)

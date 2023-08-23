@@ -25,6 +25,7 @@
 #include "IncludeGlobals.h"
 #include <time.h>
 #include <limits.h>
+#include "Wav.h"
 
 #define MENU_FLAME_PRECISION_FACTOR     10
 #define MENU_FLAME_RISE_SPEED           50
@@ -662,6 +663,7 @@ void mainBrogueJunction() {
     }
 
     initializeLaunchArguments(&rogue.nextGame, rogue.nextGamePath, &rogue.nextGameSeed);
+    initWav();
 
     do {
         rogue.gameHasEnded = false;
