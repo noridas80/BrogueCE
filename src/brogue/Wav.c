@@ -30,7 +30,10 @@ static char *s_swing = NULL;
 static char *s_thud = NULL;
 static char *s_scream1 = NULL;
 
-void loadSound(char *path, char **data) {
+void loadWav(char *filename, char **data) {
+    char path[256];
+    snprintf(path, 255, "%s/assets/sounds/%s", dataDirectory, filename);
+
     FILE* fp = fopen(path, "rb");
     if (!fp) {
         return;
@@ -256,21 +259,10 @@ void playScream1() {
 }
 
 void initWav() {
-    char path[256];
-
-    snprintf(path, 255, "%s/assets/sounds/hit1.wav", dataDirectory);
-    loadSound(path, &s_hit1);
-
-    snprintf(path, 255, "%s/assets/sounds/hit2.wav", dataDirectory);
-    loadSound(path, &s_hit2);
-
-    snprintf(path, 255, "%s/assets/sounds/swing.wav", dataDirectory);
-    loadSound(path, &s_swing);
-
-    snprintf(path, 255, "%s/assets/sounds/thud.wav", dataDirectory);
-    loadSound(path, &s_thud);
-
-    snprintf(path, 255, "%s/assets/sounds/scream1.wav", dataDirectory);
-    loadSound(path, &s_scream1);
+    loadWav("hit1.wav", &s_hit1);
+    loadWav("hit2.wav", &s_hit2);
+    loadWav("swing.wav", &s_swing);
+    loadWav("thud.wav", &s_thud);
+    loadWav("scream1.wav", &s_scream1);
 }
 
